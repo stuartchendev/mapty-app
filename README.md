@@ -1,0 +1,30 @@
+## Project Overivew:
+
+Mapty is a map-based workout tracking application built with Vanilla JavaScript,
+designed with a clear separation between application state, UI rendering, and control logic.
+
+## Features:
+
+- Geolocation-based workout creation
+- Running & Cycling workout tracking
+- Map markers and route rendering
+- LocalStorage persistence
+
+## Tech Stack
+
+- Vanilla JavaScript(ES6+)
+- Leaflet.js
+- HTML / CSS
+- LocalStorage API
+
+## Project Structure
+
+- mapty-model.js: application state & business logic
+- sub-model/: domain entities responsible for workout data modeling and calculations
+  (Running, Cycling, and shared Workout logic)
+- mapty-controller.js: event handling & app flow
+- views/: UI rendering logic
+
+## How to run
+
+`Open index.html with Live Server`
