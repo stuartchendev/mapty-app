@@ -1,10 +1,10 @@
-import * as model from './mapty-model.js';
-import mapView from './view/mapView.js';
-import formView from './view/formView.js';
-import workoutView from './view/workoutView.js';
-import Running from './model/running.js';
-import Cycling from './model/cycling.js';
-import toolView from './view/toolView.js';
+import * as model from "./mapty-model.js";
+import mapView from "./view/mapView.js";
+import formView from "./view/formView.js";
+import workoutView from "./view/workoutView.js";
+import Running from "./sub-model/running.js";
+import Cycling from "./sub-model/cycling.js";
+import toolView from "./view/toolView.js";
 
 class Controller {
   init() {
@@ -32,7 +32,7 @@ class Controller {
     );
   }
   _loadWorkout() {
-    const data = JSON.parse(localStorage.getItem('workouts'));
+    const data = JSON.parse(localStorage.getItem("workouts"));
     if (!Array.isArray(data)) {
       model.state.workouts = [];
       return;
@@ -43,7 +43,7 @@ class Controller {
   _workoutsRenderHelper(workouts) {
     workoutView.clear();
     if (workouts)
-      workouts.forEach(workout => {
+      workouts.forEach((workout) => {
         // render list workout
         workoutView.render(workout);
       });
@@ -53,11 +53,11 @@ class Controller {
       // showError use arrow function because getCurrentPosition callback just listening error evnt once time
       navigator.geolocation.getCurrentPosition(this._loadMap.bind(this), () => {
         formView._renderError(
-          'Could not get your location. Please Check location access.'
+          "Could not get your location. Please Check location access."
         );
       });
     } else {
-      formView._renderError('Geolocation is not supported by your browser.');
+      formView._renderError("Geolocation is not supported by your browser.");
     }
   }
   _loadMap(position) {
@@ -90,26 +90,26 @@ class Controller {
       // render workout;
       workoutView.render(currWorkout);
       // store in localStorage
-      localStorage.setItem('workouts', JSON.stringify(model.state.workouts));
+      localStorage.setItem("workouts", JSON.stringify(model.state.workouts));
     } catch (error) {
       formView._renderError(error.message);
     }
   }
   _isInputFinite({ type, distance, duration, cadence, elevationGain }) {
-    const valueToCheck = type === 'running' ? cadence : elevationGain;
+    const valueToCheck = type === "running" ? cadence : elevationGain;
     const value = [distance, duration, valueToCheck];
-    const allFinite = value.every(val => Number.isFinite(val));
-    const allPositive = value.every(val => val > 0);
+    const allFinite = value.every((val) => Number.isFinite(val));
+    const allPositive = value.every((val) => val > 0);
     // finite error message
     if (!allFinite) {
-      throw new Error('Inputs must be numbers.');
+      throw new Error("Inputs must be numbers.");
     }
     // positive error message
     if (!allPositive) {
       throw new Error(
-        type === 'running'
-          ? 'Distance, duration and cadence must be positive numbers. Please Try Again'
-          : 'Distance, duration and elevation must be positive numbers. Please Try Again'
+        type === "running"
+          ? "Distance, duration and cadence must be positive numbers. Please Try Again"
+          : "Distance, duration and elevation must be positive numbers. Please Try Again"
       );
     }
   }
@@ -132,7 +132,7 @@ class Controller {
   }
   _formatTypeWorkout(input) {
     // if workout is running, create running object
-    if (input.type === 'running') {
+    if (input.type === "running") {
       return new Running({
         coords: input.coords,
         routes: structuredClone(model.state.tempRoute),
@@ -141,7 +141,7 @@ class Controller {
         cadence: input.cadence,
       });
     }
-    if (input.type === 'cycling') {
+    if (input.type === "cycling") {
       return new Cycling({
         coords: input.coords,
         routes: structuredClone(model.state.tempRoute),
@@ -158,7 +158,7 @@ class Controller {
     this._resetTempWorkoutUI();
     // find workout data match click one
     const currWorkout = model.state.workouts.find(
-      work => work.id === workoutID
+      (work) => work.id === workoutID
     );
     if (!currWorkout) return;
     // set current workout by id
@@ -213,10 +213,10 @@ class Controller {
 
     // set workout view
     mapView.setRouteView(
-      model.state.workouts.map(w => Object.values(w.routes)),
+      model.state.workouts.map((w) => Object.values(w.routes)),
       true
     );
-    model.state.workouts.forEach(workout => {
+    model.state.workouts.forEach((workout) => {
       this._addTempWorkoutUI(workout);
     });
   }
@@ -224,7 +224,7 @@ class Controller {
     toolView.setEditClose();
     formView.closeForm();
     mapView.clearMapArtifacts();
-    localStorage.removeItem('workouts');
+    localStorage.removeItem("workouts");
     model.resetTempRouting();
     model.state.workouts = [];
     mapView.reloadMap();
@@ -235,14 +235,14 @@ class Controller {
     if (!toolView.getIsEdited() || workoutId != model.state.currWorkoutId)
       return;
     const selectedWorkoutIndex = model.state.workouts.findIndex(
-      workout => workout.id === workoutId
+      (workout) => workout.id === workoutId
     );
     if (selectedWorkoutIndex < 0) return;
     // delete workout in the model state by currect workou index
     model.deleteWrokout(selectedWorkoutIndex);
     toolView.setEditClose();
     this._afterDeleteCleanUp();
-    localStorage.setItem('workouts', JSON.stringify(model.state.workouts));
+    localStorage.setItem("workouts", JSON.stringify(model.state.workouts));
   }
   _afterDeleteCleanUp() {
     this._workoutsRenderHelper(model.state.workouts);
@@ -254,9 +254,9 @@ class Controller {
       workoutView.clear();
       model.state.workouts
         .sort((a, b) => a.distance - b.distance)
-        .forEach(work => workoutView.render(work));
+        .forEach((work) => workoutView.render(work));
       // store in localStorage
-      localStorage.setItem('workouts', JSON.stringify(model.state.workouts));
+      localStorage.setItem("workouts", JSON.stringify(model.state.workouts));
     }
   }
 }
