@@ -1,0 +1,8 @@
+# node.js dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variavle
+.env
