@@ -10,6 +10,20 @@ focusing on improved state management, separation of concerns, and long-term mai
 Mapty is a map-based workout tracking application built with Vanilla JavaScript,
 designed with a clear separation between application state, UI rendering, and control logic.
 
+## Demo:
+
+https://mapty-mvc-app.netlify.app/
+
+## ScreenShoots:
+
+##### Map View:
+
+![Map View](./img/Demo0.png)
+
+##### Add Workout:
+
+![Add Workout](./img/Demo1.png)
+
 ## Features:
 
 - Geolocation-based workout creation
@@ -31,7 +45,3 @@ designed with a clear separation between application state, UI rendering, and co
   (Running, Cycling, and shared Workout logic)
 - **mapty-controller.js**: event handling & app flow
 - **views/**: UI rendering logic
-
-## How to run
-
-`Open index.html with Live Server`
