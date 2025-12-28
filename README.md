@@ -17,9 +17,7 @@ designed with a clear separation between application state, UI rendering, and co
 
 ## 🌞 Preview:
 
-![Map View](./img/Demo0.png)
-
-![delete Workout](./img/Demo1.png)
+![Mapty Preview](./img/preview.gif)
 
 ## ✨ Features:
 
