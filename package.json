@@ -4,6 +4,9 @@
   "description": "This project is based on the Mapty application from Jonas Schmedtmann's JavaScript course.",
   "main": "focusing on imp",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/lit-cup/mapty-app/issues"
   },
-  "homepage": "https://github.com/lit-cup/mapty-app#readme"
+  "homepage": "https://github.com/lit-cup/mapty-app#readme",
+  "devDependencies": {
+    "vite": "^7.3.0"
+  }
 }
