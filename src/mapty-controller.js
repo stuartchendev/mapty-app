@@ -262,5 +262,4 @@ class Controller {
 }
 
 const app = new Controller();
-1;
 app.init();
