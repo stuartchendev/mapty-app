@@ -1,7 +1,8 @@
+import DELETE_IMAGE from "../../img/delete.png?url";
 class workoutView {
-  _workoutContainer = document.querySelector('.work');
+  _workoutContainer = document.querySelector(".work");
   clear() {
-    this._workoutContainer.innerHTML = '';
+    this._workoutContainer.innerHTML = "";
   }
   render(workout) {
     let html = `
@@ -11,14 +12,14 @@ class workoutView {
             <div class="tool-btn tool-delete">
               <input class="edit edit__delete" data-id="${
                 workout.id
-              }" type="image" src="../img/delete.png" alt="delete" width="30" height="30">
+              }" type="image" src="${DELETE_IMAGE}" alt="delete" width="30" height="30">
               <span class="desc desc__delete">Delete</span>
             </div> 
           </div>
           <div class="workout__body">
           <div class="workout__details">
             <span class="workout__icon">${
-              workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'
+              workout.type === "running" ? "🏃‍♂️" : "🚴‍♀️"
             }</span>
             <span class="workout__value">${workout.distance}</span>
             <span class="workout__unit">km</span>
@@ -29,7 +30,7 @@ class workoutView {
             <span class="workout__unit">min</span>
           </div>
         `;
-    if (workout.type === 'running') {
+    if (workout.type === "running") {
       html += `
             <div class="workout__details">
               <span class="workout__icon">⚡️</span>
@@ -45,7 +46,7 @@ class workoutView {
           </li> `;
     }
 
-    if (workout.type === 'cycling') {
+    if (workout.type === "cycling") {
       html += `
             <div class="workout__details">
               <span class="workout__icon">⚡️</span>
@@ -60,7 +61,7 @@ class workoutView {
           </div>         
           </li>`;
     }
-    this._workoutContainer.insertAdjacentHTML('afterbegin', html);
+    this._workoutContainer.insertAdjacentHTML("afterbegin", html);
   }
 }
 
